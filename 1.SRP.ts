@@ -20,8 +20,7 @@ class UserRegistry {
 // With Single responsability principle
 class UserRegistry2 {
     constructor(email, password) {
-        let salt = bcrypt.genSaltSync(10);
-        let encriptedPassword = bcrypt.hashSync(password, salt)
+        let encriptedPassword = PasswordEncrypter.encrypt(password)
         const newUser = new User(email, encriptedPassword)
         UserRepository.saveToDatabase(newUser)
     }
